@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>multiSelect.js example</title>
+	<!-- you can add this style for hide the selects in first load -->
+	<style>
+		[multiSelect] [parent]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>multiSelect.js example</h1>
+	<p>This is a sample of how multiSelect.js works by a mechanic workshop example</p>
+
+	<!-- ==================== HTML ===================== -->
+	<!-- multiSelect container, in this case a <form/> -->
+	<form multiSelect onsubmit="return false">
+		<div>
+			<label>email</label>
+			<input name="email" type="email" />
+		</div>
+		<!-- this is a fixed <select/> container, you don't need a 'parent' attribute -->
+		<div visibleId="myFixedSelect">
+			<label>select a service</label>
+			<select name="serviceChoice">
+				<option value="nothingHere">please select a option</option>
+				<option makeVisible="fix-selection" value="fix">fix vehicle</option>
+				<option makeVisible="buy-parts" value="buy">buy car parts</option>
+			</select>
+		</div>
+		<!-- parent container -->
+		<!-- this container have all the first <select/> child <options/> -->
+		<!-- the 'parent' attribute has the parent visibleId value -->
+		<div parent="myFixedSelect">
+			<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
+			<div visibleId="fix-selection"> <!-- first <option/> child from 'myFixedSelect' -->
+				<select name="fixChoice">
+					<option value="nothingHere">please select a fix service</option>
+					<option makeVisible="engines-selection" value="fix-engine">fix my car engine</option>
+					<option makeVisible="paint-selection" value="fix-paint">fix my car paint</option>
+				</select>
+			</div>
+
+				<!-- sub <select/> container of 'fix-selection' -->
+				<!-- the 'parent' attribute has the parent visibleId value -->
+				<div parent="fix-selection">
+					<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
+					<div visibleId="engines-selection"> <!-- first corresponding child of 'fix-selection' -->
+						<select name="engineChoice">
+							<option value="nothingHere">please select a engine brand</option>
+							<option value="engine-toyota">toyota engine</option>
+							<option value="engine-ferrari">ferrari engine</option>
+						</select>
+					</div>
+					<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
+					<div visibleId="paint-selection"> <!-- second corresponding child of 'fix-selection' -->
+						<select name="paintChoice">
+							<option value="nothingHere">please select a color</option>
+							<option value="yellow">yellow</option>
+							<option value="blue">blue</option>
+							<option value="red">red</option>
+						</select>
+					</div>
+				</div>
+
+
+
+			<!-- the visibleId is the same as the corresponding option -->
+			<div visibleId="buy-parts"> <!-- second <option/> child from 'myFixedSelect' -->
+				<select name="partsChoice">
+					<option value="nothingHere">please select a car part</option>
+					<option value="buy-tires">buy tires</option>
+					<option value="buy-engine">buy a new engine</option>
+					<option value="buy-nitro">buy nitro</option>
+				</select>
+			</div>
+		</div>
+
+	<button onclick="sendData()">send data</button>
+
+	</form>
+	<!-- ===================================================== -->
+	
+
+	<!-- import multiSelect.js -->
+	<script src="../src/multiSelect.js"></script>
+	<!-- my code -->
+	<script>
+		// =============== JS ================
+		// make a new multiSelect instance
+		const multi = new MultiSelect({
+			// default 'please select option value'
+			// this value can be '' or '0' or whatever you want
+			pleaseSelectOptionValue: 'nothingHere' 
+		});
+
+		// function example for send data with fetch()
+		async function sendData() {
+			// get the form data with getJson() method
+			// pass true if you want all the <input> <textarea> and <select> values
+			// pass false if you only want the select values
+			const myDataJson = multi.getJson(true);
+			// validate if all the selects have a valid value and not the 'please select a option' value
+			const selectsAreValid = multi.simpleValidate();
+
+			console.log(myDataJson, selectsAreValid)
+
+			// call your api or make something with the form values
+			if(selectsAreValid){
+				let call = await fetch('/myapi/send', {
+					'method': 'POST',
+					'body': JSON.stringify(myDataJson),
+					'headers': {
+						'Content-Type': 'application/json'
+					}
+				});
+				let responseJson = await call.json();
+				// make something with your json
+				console.log(responseJson);
+			}
+
+		}
+
+
+		// ===================================
+		
+	</script>
+</body>
+</html>

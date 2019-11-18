@@ -39,14 +39,23 @@ class MultiSelect{
 		const select = ev.target;
 		const selectValue = select.value;
 		// if the <option/> is not the "please select a option" with value=""
-		if(selectValue!= pleaseSelectOptionValue && select.parentElement.getAttribute('visibleId')){
+		if(
+			// check if isn't invalid value
+			selectValue!= pleaseSelectOptionValue
+			&&
+			// check if the parent has a 'visibleId' attribute
+			select.parentElement.getAttribute('visibleId')
+			&&
+			// check if the option has the 'makeVisible' attribute 
+			select.querySelector(`option[value=${selectValue}]`).getAttribute('makeVisible')
+		){
 			// get the makeVisible attribute of <option/>
 			const makeVisible = select.querySelector(`option[value=${selectValue}]`).getAttribute('makeVisible');
 			// get the visibleId of the <select/> container
 			const parentVisibleId = select.parentElement.getAttribute("visibleId");
 			// buscar la <section/> padre de los select y ocultar todos los hijos
 			// para luego solo mostrar el deseado
-			const parent = multiSelectContainer.querySelector(`section[parent=${parentVisibleId}]`);
+			const parent = multiSelectContainer.querySelector(`[parent=${parentVisibleId}]`);
 			// ocultar hijos
 			[...parent.children].map( child => child.style.display = "none" );
 			// hacer parent visible
@@ -59,23 +68,22 @@ class MultiSelect{
 			try{
 				let dependChilds = select.parentElement.getAttribute('visibleId');
 				// hide all the childs
-				document.querySelector(`section[parent=${dependChilds}]`).style.display = "none";
+				document.querySelector(`[parent=${dependChilds}]`).style.display = "none";
 			}
 			// the <select/> is a simple select
 			catch(err){
-				console.warn(`
-					warning: an "error" ocurred because the <select> is a simple normal <select>
-					don't worry, this is a warning
-					The VALUE is ${selectValue}
-					The ERROR is ${err}
-				`);
+				console.warn('warning: an "error" ocurred because the <select> is a simple normal <select> \n' +
+					'don\'t worry, this is a warning \n' +
+					'The VALUE is ' + selectValue + '\n' +
+					'The ERROR is: ' + err + '\n'
+				);
 			}
 		}
 
 	}
 
 	// ========== get all the values in form, like inputs, selects and textareas ==========
-	getJson() {
+	getJson( ofAll = true) {
 		// save all the values here
 		let jsonValues = {};
 		// class variables and methods
@@ -89,20 +97,24 @@ class MultiSelect{
 			} = this;
 	 	// variable for save only the visible items
 	 	let visibleItems;
-	 	// check if a input exist in form
-	 	if(allInputs.length > 0){
-	 		visibleItems = getVisibleItems(allInputs);
-	 		iterateValues(jsonValues, visibleItems);
-	 	}
-
+	 	
 	 	if(allSelects.length > 0){
 	 		visibleItems = getVisibleItems(allSelects);
 	 		iterateValues(jsonValues, visibleItems);
 	 	}
+	 	// if you want all the inputs and textareas values or only the <select> values
+	 	if(ofAll){
+		 	// check if a input exist in form
+		 	if(allInputs.length > 0){
+		 		visibleItems = getVisibleItems(allInputs);
+		 		iterateValues(jsonValues, visibleItems);
+		 	}
 
-	 	if(allTextArea.length > 0){
-	 		visibleItems = getVisibleItems(allTextArea);
-	 		iterateValues(jsonValues, visibleItems);
+
+		 	if(allTextArea.length > 0){
+		 		visibleItems = getVisibleItems(allTextArea);
+		 		iterateValues(jsonValues, visibleItems);
+		 	}
 	 	}
 
 	 	return jsonValues;
@@ -154,3 +166,8 @@ class MultiSelect{
 	}
 
 }
+
+// check if is nodejs and export
+typeof module == 'undefined' ? null :
+typeof module.exports == 'undefined' ? null :
+module.exports = MultiSelect;  

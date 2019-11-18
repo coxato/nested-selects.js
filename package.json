@@ -1,0 +1,42 @@
+{
+  "name": "multiselect",
+  "version": "1.0.0",
+  "description": "a small library to manage multiple select tags",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build-babel": "babel ./src/multiSelect.js > ./dist/multiSelect.babel.js",
+    "build-minify": "minify ./dist/multiSelect.babel.js > ./dist/multiSelect.min.js",
+    "build": "npm run build-babel && npm run build-minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosEdua/multiSelect.js.git"
+  },
+  "keywords": [
+    "select",
+    "tag",
+    "form"
+  ],
+  "author": "Carlos Martínez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosEdua/multiSelect.js/issues"
+  },
+  "homepage": "https://github.com/carlosEdua/multiSelect.js#readme",
+  "dependencies": {
+    "babel": "^6.23.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "babel-cli": "^6.26.0",
+    "babel-minify": "^0.5.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-minify": "^0.5.1"
+  }
+}

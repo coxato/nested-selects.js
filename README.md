@@ -1,8 +1,8 @@
 # multiSelect.js
 
-En | a library for manage multiple select tags in a form
+En-> a library for manage multiple select tags in a form
 
-Es | una librería para controlar multiples etiquetas select en un formulario
+Es-> una librería para controlar multiples etiquetas select en un formulario
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/carlosEdua/multiSelect.js?color=green)
 ![GitHub](https://img.shields.io/github/license/carlosEdua/multiSelect.js)

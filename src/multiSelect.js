@@ -41,7 +41,7 @@ class MultiSelect{
 		// if the <option/> is not the "please select a option" with value=""
 		if(
 			// check if isn't invalid value
-			selectValue!= pleaseSelectOptionValue
+			selectValue!== pleaseSelectOptionValue
 			&&
 			// check if the parent has a 'visibleId' attribute
 			select.parentElement.getAttribute('visibleId')
@@ -61,7 +61,7 @@ class MultiSelect{
 			// hacer parent visible
 			parent.style.display = "block";
 			// mostrar solo el hijo deseado
-			parent.querySelector(`div[visibleId=${makeVisible}]`).style.display = "block";
+			parent.querySelector(`div[visibleId=${makeVisible}]`).style.display = "flex";
 		}
 		// you select the default "please select a option" <option/>
 		else{
@@ -88,7 +88,6 @@ class MultiSelect{
 		let jsonValues = {};
 		// class variables and methods
 		let { 
-				multiSelectContainer,
 				getVisibleItems,
 				iterateValues,
 				allSelects,
@@ -168,6 +167,6 @@ class MultiSelect{
 }
 
 // check if is nodejs and export
-typeof module == 'undefined' ? null :
-typeof module.exports == 'undefined' ? null :
+typeof module === 'undefined' ? null :
+typeof module.exports === 'undefined' ? null :
 module.exports = MultiSelect;  

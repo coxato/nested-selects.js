@@ -1,0 +1,68 @@
+body {
+  background: white;
+  color: rgb(5, 5, 5);
+  font-weight: 300;
+  /* height: 100vh; */
+  margin: 0;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Helvetica neue, roboto;
+}
+
+img {
+  width: 56px;
+  height: 48px;
+}
+
+h1 {
+  font-weight: 200;
+  font-style: 26px;
+  margin: 10px;
+}
+
+form{
+  padding: 30px;
+  display: flex;
+  flex-direction: column; 
+  border: 3px solid black;
+  border-radius: 7px;
+  background: #dadada;
+}
+
+form div{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+label{
+  font-size: 16px;
+  font-weight: bold;
+  font-family: arial;
+  text-align: left;
+}
+
+select{
+  padding: 5px;
+}
+
+input{
+  padding: 5px;
+}
+
+button{
+  padding: 5px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid black;
+  margin-top: 12px;
+  font-weight: bold;
+  font-family: arial;
+  background: royalblue;
+}
+

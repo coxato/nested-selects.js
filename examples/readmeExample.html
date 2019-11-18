@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example</title>
+	<style>
+		[multiSelect] [parent]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- ======================== HTML ==================== -->
+	<form multiSelect onsubmit="return false">
+
+		<div visibleId="select1">
+			<select name="mySelect1">
+				<option value="nothing">please select a option</option>
+				<option value="v1" makeVisible="sub-select1">sub select 1</option>
+				<option value="v2" makeVisible="sub-select2">sub select 2</option>
+				<option value="v3" makeVisible="a-sub-div">sub div</option>
+			</select>
+		</div>
+
+		<!-- el valor de parent debe ser el visibleId del select del cual depende -->
+		<div parent="select1">
+			<!-- el valor de visibleId debe ser el valor del makeVisible correspondiente -->
+			<div visibleId="sub-select1">
+				<select name="subSelect1">
+					<option value="nothing">select an option</option>
+					<option value="subSelect1-value-1">sub select 1 option</option>
+					<option value="subSelect1-value-2">other sub select 1 option</option>
+				</select>
+			</div>
+
+			<!-- el valor de visibleId debe ser el valor del makeVisible correspondiente -->
+			<div visibleId="sub-select2">
+				<select name="subSelect2">
+					<option value="nothing">select an option</option>
+					<option value="subSelect2-value-1">sub select 2 option</option>
+					<option value="subSelect2-value-2">other sub select 2 option</option>
+				</select>
+			</div>
+
+			<!-- el valor de visibleId debe ser el valor del makeVisible correspondiente -->
+			<div visibleId="a-sub-div">
+				<!-- notese que no solo se pueden selects, también pueden haber -->
+				<!-- divs u otros elementos que dependan del valor seleccionado en un select -->
+				<h1>hola soy un h1 que se mostró porque seleccionaste la 'option' con el makeVisible="a-sub-div"</h1>
+			</div>
+
+		</div>
+
+		<button onclick="sendData()">send data</button>
+
+	</form>
+	<!-- ==================================== JavaScript ================================= -->
+	<!-- "import" of multiSelect.js -->
+	<script src="../dist/multiSelect.min.js"></script>
+	<!-- your js code -->
+	<script>
+		// make a new multiSelect instance
+		const multi = new MultiSelect({
+			pleaseSelectOptionValue: 'nothingHere' 
+		});
+
+		function sendData() {
+			// get the <select> values
+			const values = multi.getJson(false);
+			console.log(values);
+			// validate
+			if(multi.simpleValidate()){
+				// make something
+			}else{
+				//make something
+			}
+		}
+
+	</script>
+</body>
+</html>

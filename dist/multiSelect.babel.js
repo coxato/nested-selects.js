@@ -68,7 +68,7 @@ var MultiSelect = function () {
 			// if the <option/> is not the "please select a option" with value=""
 			if (
 			// check if isn't invalid value
-			selectValue != pleaseSelectOptionValue &&
+			selectValue !== pleaseSelectOptionValue &&
 			// check if the parent has a 'visibleId' attribute
 			select.parentElement.getAttribute('visibleId') &&
 			// check if the option has the 'makeVisible' attribute 
@@ -87,7 +87,7 @@ var MultiSelect = function () {
 				// hacer parent visible
 				parent.style.display = "block";
 				// mostrar solo el hijo deseado
-				parent.querySelector('div[visibleId=' + makeVisible + ']').style.display = "block";
+				parent.querySelector('div[visibleId=' + makeVisible + ']').style.display = "flex";
 			}
 			// you select the default "please select a option" <option/>
 			else {
@@ -113,8 +113,7 @@ var MultiSelect = function () {
 			// save all the values here
 			var jsonValues = {};
 			// class variables and methods
-			var multiSelectContainer = this.multiSelectContainer,
-			    getVisibleItems = this.getVisibleItems,
+			var getVisibleItems = this.getVisibleItems,
 			    iterateValues = this.iterateValues,
 			    allSelects = this.allSelects,
 			    allInputs = this.allInputs,
@@ -269,5 +268,5 @@ var MultiSelect = function () {
 // check if is nodejs and export
 
 
-typeof module == 'undefined' ? null : typeof module.exports == 'undefined' ? null : module.exports = MultiSelect;
+typeof module === 'undefined' ? null : typeof module.exports === 'undefined' ? null : module.exports = MultiSelect;
 

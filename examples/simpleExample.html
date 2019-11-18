@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>multiSelect.js example</title>
+	<link rel="stylesheet" href="./simpleExample.css">
 	<!-- you can add this style for hide the selects in first load -->
 	<style>
 		[multiSelect] [parent]{
@@ -37,6 +38,7 @@
 		<div parent="myFixedSelect">
 			<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
 			<div visibleId="fix-selection"> <!-- first <option/> child from 'myFixedSelect' -->
+				<label>fix service</label>
 				<select name="fixChoice">
 					<option value="nothingHere">please select a fix service</option>
 					<option makeVisible="engines-selection" value="fix-engine">fix my car engine</option>
@@ -49,6 +51,7 @@
 				<div parent="fix-selection">
 					<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
 					<div visibleId="engines-selection"> <!-- first corresponding child of 'fix-selection' -->
+						<label>choice a engine</label>
 						<select name="engineChoice">
 							<option value="nothingHere">please select a engine brand</option>
 							<option value="engine-toyota">toyota engine</option>
@@ -57,6 +60,7 @@
 					</div>
 					<!-- the visibleId is the corresponding 'makeVisible' <option/> -->
 					<div visibleId="paint-selection"> <!-- second corresponding child of 'fix-selection' -->
+						<label>choice a color</label>
 						<select name="paintChoice">
 							<option value="nothingHere">please select a color</option>
 							<option value="yellow">yellow</option>
@@ -70,6 +74,7 @@
 
 			<!-- the visibleId is the same as the corresponding option -->
 			<div visibleId="buy-parts"> <!-- second <option/> child from 'myFixedSelect' -->
+				<label>cars parts</label>
 				<select name="partsChoice">
 					<option value="nothingHere">please select a car part</option>
 					<option value="buy-tires">buy tires</option>
@@ -79,9 +84,13 @@
 			</div>
 		</div>
 
-	<button onclick="sendData()">send data</button>
+		<label>question</label>
+		<textarea name="question" cols="30" rows="7" placeholder="write your question"></textarea>
+
+		<button onclick="sendData()">send data</button>
 
 	</form>
+	<p>see the console for more information</p>
 	<!-- ===================================================== -->
 	
 

@@ -7,7 +7,7 @@ Es-> una librería para controlar multiples etiquetas select en un formulario
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/carlosEdua/multiSelect.js?color=green)
 ![GitHub](https://img.shields.io/github/license/carlosEdua/multiSelect.js)
 
-### [ver demo](https://471684.playcode.io)
+# [ver demo](https://471684.playcode.io)
 
 ## Uso en el HTML
 **multiSelect.js** trabaja con atributos en las etiquetas HTML, hay cuatro (4) atributos que se deben tener en cuenta para trabajar con **multiSelect.js** los cuales son:
@@ -219,8 +219,9 @@ Habrás notado que al cargar la página se ven todas las etiquetas `<select>` in
 	display: none;
 }
 ```
+
 de lo demás se encarga JavaScript.
 
-Si quieres ver un ejemplo más extenso puedes ver la [demo](https://471684.playcode.io)
+Si quieres ver un ejemplo más extenso puedes ver la **[demo]**(https://471684.playcode.io)
 
 No olvides que puedes colaborar o dar ideas para mejorar la librería.

@@ -222,6 +222,6 @@ Habrás notado que al cargar la página se ven todas las etiquetas `<select>` in
 
 de lo demás se encarga JavaScript.
 
-Si quieres ver un ejemplo más extenso puedes ver la **[demo]**(https://471684.playcode.io)
+Si quieres ver un ejemplo más extenso puedes [ver la demo](https://471684.playcode.io)
 
 No olvides que puedes colaborar o dar ideas para mejorar la librería.

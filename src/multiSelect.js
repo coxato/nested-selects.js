@@ -29,13 +29,12 @@ class MultiSelect{
 	// ========== add listener to <select/> ==========
 	addSelectListeners(selectHTMLElements){
 		// agregar eventListener a todos los <select />
-		selectHTMLElements.map( select => select.addEventListener('change', (ev) => this.showHideIt(ev,this)) );
+		selectHTMLElements.map( select => select.addEventListener('change', (ev) => this.showHideIt(ev)) );
 	}
 
 	// ========== show/hide logic ==========
-	showHideIt(ev, that){
-		const THIS = that;
-		const { multiSelectContainer, pleaseSelectOptionValue } = THIS;
+	showHideIt(ev){
+		const { multiSelectContainer, pleaseSelectOptionValue } = this;
 		const select = ev.target;
 		const selectValue = select.value;
 		// if the <option/> is not the "please select a option" with value=""
@@ -73,9 +72,9 @@ class MultiSelect{
 			// the <select/> is a simple select
 			catch(err){
 				console.warn('warning: an "error" ocurred because the <select> is a simple normal <select> \n' +
-					'don\'t worry, this is a warning \n' +
+					'don\'t worry, this warning is not important\n' +
 					'The VALUE is ' + selectValue + '\n' +
-					'The ERROR is: ' + err + '\n'
+					'The "ERROR" is: ' + err + '\n'
 				);
 			}
 		}
@@ -141,6 +140,7 @@ class MultiSelect{
 
  	// ========== simple valiation of all the <select> values ========== 
 	// check if it is not the typical value of 'select an option'
+	// each selected item should have a valid value, not <<please select an option>>
 	simpleValidate(){
 		let isValid = true;
 		let invalidValues = [];
